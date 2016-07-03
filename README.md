@@ -8,4 +8,6 @@ Developped by Fernando Ribeiro
 
 * Create Project in github
 * Game Design Document (GDC)
+* Set Up a Github Repo and cloned un my local machine
+
 
