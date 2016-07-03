@@ -7,4 +7,5 @@ Developped by Fernando Ribeiro
 ## Start Project
 
 * Create Project in github
+* Game Design Document (GDC)
 
