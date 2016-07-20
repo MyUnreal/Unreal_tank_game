@@ -14,6 +14,15 @@ void ATankPlayerController::BeginPlay() {
 	}
 }
 
+
+// Called every frame
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimTowardsCrosshair();
+
+}
+
 ATank* ATankPlayerController::GetControlledPawn() const {
 
 	/*APawn* TankPawn = GetPawn();
@@ -26,6 +35,24 @@ ATank* ATankPlayerController::GetControlledPawn() const {
 
 }
 
+void ATankPlayerController::AimTowardsCrosshair() {
+	//I've got no tank in controll
+	if (!GetControlledPawn()) { return; }
 
+	//Get World location through Crosshair
+	FVector HitLocation; //Out parameter -> It will be modified (We need to get the HitLocation...)
+	if (GetSightRayHitLocation(HitLocation)) {
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+		//If hits something (landscape or other tank)
+	}
+}
+
+//Get OUT parameter, true if hit landscape or tank
+//As we pass an & later the HitLocation will be modified here, as an OUT parameter - Unrela Engine does things like This in a getter method and we must follow...
+bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const {
+
+	HitLocation = FVector(1.0);
+	return true;
+}
 
 
