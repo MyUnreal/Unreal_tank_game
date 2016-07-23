@@ -15,12 +15,18 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-public:
+private:
+	UPROPERTY(EditAnywhere)
+	float CrossHairLocationX = 0.5f; //We defined that the small dot is 50% middle screen
+	UPROPERTY(EditAnywhere)
+	float CrossHairLocationY = 0.333333f; //We defined that the small dot is 1/3 top of screen
+
+
 	ATank* GetControlledPawn() const;
 	virtual void BeginPlay() override;
 	virtual void Tick( float DeltaTime );
 
-private:
+	
 	//Starts the tank moving the barrel twards the Crosshair - dot on screen
 	void AimTowardsCrosshair();
 
