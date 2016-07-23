@@ -23,7 +23,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 }
 
-ATank* ATankPlayerController::GetControlledPawn() const {
+ATank* ATankPlayerController::GetControlledTank() const {
 
 	/*APawn* TankPawn = GetPawn();
 	ATank* Tank = Cast<ATank>(TankPawn);
@@ -37,13 +37,13 @@ ATank* ATankPlayerController::GetControlledPawn() const {
 
 void ATankPlayerController::AimTowardsCrosshair() {
 	//I've got no tank in controll
-	if (!GetControlledPawn()) { return; }
+	if (!GetControlledTank()) { return; }
 
 	//Get World location through Crosshair
 	FVector HitLocation; //Out parameter -> It will be modified (We need to get the HitLocation...)
 	if (GetSightRayHitLocation(HitLocation)) {
-		UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
-		//If hits something (landscape or other tank)
+		
+		GetControlledTank()->AimAt(HitLocation);
 	}
 }
 

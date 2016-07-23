@@ -25,7 +25,7 @@ private:
 	float LineTraceRange = 1000000; //MAx distance to Hit - 10km (Is in cm so is 10 000 00) The last 2 00 is form cm
 
 
-	ATank* GetControlledPawn() const;
+	ATank* GetControlledTank() const;
 	virtual void BeginPlay() override;
 	virtual void Tick( float DeltaTime );
 
