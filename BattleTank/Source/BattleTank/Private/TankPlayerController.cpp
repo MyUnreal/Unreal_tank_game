@@ -60,7 +60,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const {
 
 	//Location in pixels
 	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairLocationX, ViewportSizeY * CrossHairLocationY);
-	UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *ScreenLocation.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *ScreenLocation.ToString());
 	//Linetrace along that look direction, and see what we hit (up to max range)
 
 
