@@ -32,4 +32,5 @@ private:
 
 	//Get OUT parameter, true if hit landscape or tank
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
+	bool GetLookingDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 };
