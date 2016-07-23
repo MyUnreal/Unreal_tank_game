@@ -42,10 +42,11 @@ void ATankPlayerController::AimTowardsCrosshair() {
 	//Get World location through Crosshair
 	FVector HitLocation; //Out parameter -> It will be modified (We need to get the HitLocation...)
 	if (GetSightRayHitLocation(HitLocation)) {
-		//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
+		UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
 		//If hits something (landscape or other tank)
 	}
 }
+
 
 //Get OUT parameter, true if hit landscape or tank
 //As we pass an & later the HitLocation will be modified here, as an OUT parameter - Unrela Engine does things like This in a getter method and we must follow...
@@ -63,13 +64,30 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const {
 	//UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *ScreenLocation.ToString());
 	FVector LookDirection;
 	if (GetLookingDirection(ScreenLocation, LookDirection)) {
-		UE_LOG(LogTemp, Warning, TEXT("Look direction %s"), *LookDirection.ToString());
+		//Linetrace along that look direction, and see what we hit (up to max range)
+		GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
-	
-	//Linetrace along that look direction, and see what we hit (up to max range)
-
 
 	return true;
+}
+
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const {
+	FHitResult HitResult;
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
+	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
+
+	//If The line trace succeeds we set hit location and return true, otherwise return false
+	if (GetWorld()->LineTraceSingleByChannel(
+		HitResult,
+		StartLocation,
+		EndLocation,
+		ECollisionChannel::ECC_Visibility //Hit anything Visible
+	)) {
+		HitLocation = HitResult.Location;
+		return true;
+	}
+	HitLocation = FVector(0);
+	return false;
 }
 
 //The & is for the Out parameter - the one that will be changed

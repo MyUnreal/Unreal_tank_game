@@ -21,6 +21,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	float CrossHairLocationY = 0.333333f; //We defined that the small dot is 1/3 top of screen
 
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 1000000; //MAx distance to Hit - 10km (Is in cm so is 10 000 00) The last 2 00 is form cm
+
 
 	ATank* GetControlledPawn() const;
 	virtual void BeginPlay() override;
@@ -32,5 +35,6 @@ private:
 
 	//Get OUT parameter, true if hit landscape or tank
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector & HitLocation) const;
 	bool GetLookingDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 };
