@@ -33,6 +33,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		StartLocation,
 		HitLocation,
 		LaunchSpeed,
+		false, //There is a bug in this method all these parameters should be called in this way or it doesn't work...
+		0,
+		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 
