@@ -5,6 +5,8 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+class UTankBarrel; //Forward declaration
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -15,7 +17,7 @@ public:
 	
 	//To Be Called in the Blueprint as a function - The BarrelToSet Came Form the BluePrint itself (See Blueprint)
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;

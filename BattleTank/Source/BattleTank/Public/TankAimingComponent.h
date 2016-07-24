@@ -5,6 +5,7 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+class UTankBarrel; //Forward Declaration
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
@@ -18,13 +19,13 @@ public:
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	//The Starting Point of our projectiles are in Barrel. 
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 	
 	//TODO SetTureetReference
 
 private:
 	//The Barrel inherits form UObject in Unreal - And it's where the projectiles start
-	UStaticMeshComponent* Barrel = nullptr;
+	UTankBarrel* Barrel = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
 	
 };
