@@ -4,9 +4,9 @@
 #include "TankBarrel.h"
 
 
-void UTankBarrel::Elevate(float DegressPerSec) {
+void UTankBarrel::Elevate(float DegreesPerSec) {
 
-	UE_LOG(LogTemp, Warning, TEXT("Elevate at %f degressersec"), DegressPerSec);
+	UE_LOG(LogTemp, Warning, TEXT("Elevate at %f degressersec"), DegreesPerSec);
 }
 
 
