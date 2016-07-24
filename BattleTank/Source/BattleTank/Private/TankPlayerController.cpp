@@ -20,7 +20,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
-
 }
 
 ATank* ATankPlayerController::GetControlledTank() const {
@@ -31,7 +30,6 @@ ATank* ATankPlayerController::GetControlledTank() const {
 	return Tank;*/
 
 	return Cast<ATank>(GetPawn());
-	
 
 }
 
@@ -42,7 +40,6 @@ void ATankPlayerController::AimTowardsCrosshair() {
 	//Get World location through Crosshair
 	FVector HitLocation; //Out parameter -> It will be modified (We need to get the HitLocation...)
 	if (GetSightRayHitLocation(HitLocation)) {
-		
 		GetControlledTank()->AimAt(HitLocation);
 	}
 }
@@ -52,13 +49,10 @@ void ATankPlayerController::AimTowardsCrosshair() {
 //As we pass an & later the HitLocation will be modified here, as an OUT parameter - Unrela Engine does things like This in a getter method and we must follow...
 bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const {
 
-	//HitLocation = FVector(1.0); //Just for testing purposes
-
 	//Find the Crosshair position
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY); //This methos has two & which means out parameters that change the ViewportSizeX and ViewPortSizeY, which is weird that these values are changed in a Get, But it's unreal way of doing so we must live with it.
 	//De-project the screen position of the crosshair to a world direction
-
 	//Location in pixels
 	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairLocationX, ViewportSizeY * CrossHairLocationY);
 	//UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *ScreenLocation.ToString());
@@ -71,6 +65,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const {
 	return true;
 }
 
+//Returns true if aiming at something and that something is in The visibility Worlfd. Changes the HitLocation to the actual obejct the tanks is aiming at
 bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const {
 	FHitResult HitResult;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();
