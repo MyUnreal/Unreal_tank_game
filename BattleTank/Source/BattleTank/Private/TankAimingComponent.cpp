@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankBarrel.h" //Although forward declaration in .h here we must include because we are going to call the methods
+#include "TankBarrel.h" //Although forward declaration in .h here we must include because we are going to call the methods
 #include "TankAimingComponent.h"
 
 
@@ -17,9 +18,17 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet) {
+	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
 
 	//Could be this.Barrel->Barrel, if BarrelToSet was Barrel
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* _TankTurretToSet) {
+	if (!_TankTurretToSet) { return; }
+	Turret = _TankTurretToSet;
+
+	//Could be this.Turret->_TankTurret, if BarrelToSet was Barrel
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
@@ -65,5 +74,18 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 	//Moce the barrel the right amount this frame
 	//Given a max elevation speed and the frame time
 	Barrel->Elevate(DeltaRotator.Pitch);
+
+}
+
+void UTankAimingComponent::MoveTurretTowards(FVector AimDirection) {
+
+	//Work-out the difference between the barrel totation and aimdirection
+	//auto BarrelRotator = Barrel->GetForwardVector().Rotation();
+	//auto AimAsRotator = AimDirection.Rotation();
+	//auto DeltaRotator = AimAsRotator - BarrelRotator;
+	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator %s"), *DeltaRotator.ToString());
+	//Moce the barrel the right amount this frame
+	//Given a max elevation speed and the frame time
+	//Barrel->Elevate(DeltaRotator.Pitch);
 
 }

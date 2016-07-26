@@ -8,6 +8,7 @@
 //Forward declaration
 class UTankAimingComponent;
 class UTankBarrel; 
+class UTankTurret;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -20,6 +21,8 @@ public:
 	//To Be Called in the Blueprint as a function - The BarrelToSet Came Form the BluePrint itself (See Blueprint)
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurretReference(UTankTurret* TurretToSet);
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;

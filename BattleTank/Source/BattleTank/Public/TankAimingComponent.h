@@ -7,6 +7,7 @@
 
 //Forward Declaration
 class UTankBarrel; 
+class UTankTurret;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
@@ -21,12 +22,16 @@ public:
 
 	//The Starting Point of our projectiles are in Barrel. 
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
-	
-	//TODO SetTureetReference
+
+	//The Starting Point of our projectiles are in Barrel. 
+	void SetTurretReference(UTankTurret* TurretToSet);
+
 
 private:
 	//The Barrel inherits form UObject in Unreal - And it's where the projectiles start
 	UTankBarrel* Barrel = nullptr;
+	UTankTurret* Turret = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
+	void MoveTurretTowards(FVector AimDirection);
 	
 };
