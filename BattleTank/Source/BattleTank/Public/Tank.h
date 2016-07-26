@@ -39,7 +39,7 @@ private:
 
 	//This property will be visible in Unreal
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000;  //sensible starting value of 1000 m/s (Unreal is in cm)
+	float LaunchSpeed = 4000;  //sensible starting value of 1000 m/s (Unreal is in cm)
 
 	
 	

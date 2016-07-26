@@ -2,7 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankBarrel.h" //Although forward declaration in .h here we must include because we are going to call the methods
-#include "TankBarrel.h" //Although forward declaration in .h here we must include because we are going to call the methods
+#include "TankTurret.h" //Although forward declaration in .h here we must include because we are going to call the methods
 #include "TankAimingComponent.h"
 
 
@@ -12,7 +12,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = true; //TODO Should Tick?
+	PrimaryComponentTick.bCanEverTick = false; 
 
 	// ...
 }
@@ -74,6 +74,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 	//Moce the barrel the right amount this frame
 	//Given a max elevation speed and the frame time
 	Barrel->Elevate(DeltaRotator.Pitch);
+	Turret->Rotate(DeltaRotator.Yaw);
 
 }
 
