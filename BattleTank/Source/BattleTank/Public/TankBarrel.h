@@ -8,7 +8,7 @@
 /**
  * Everything here in comments goes to the blueprint comments when hover
  */
-UCLASS(meta = (BlueprintSpawnableComponent), hidecategories=("Collision"))
+UCLASS(meta = (BlueprintSpawnableComponent))//, hidecategories=("Collision"))
 class BATTLETANK_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
