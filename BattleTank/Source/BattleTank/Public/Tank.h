@@ -23,6 +23,8 @@ public:
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
+	UFUNCTION(BlueprintCallable, Category = Firing)
+	void Fire();
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
@@ -39,7 +41,7 @@ private:
 
 	//This property will be visible in Unreal
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 4000;  //sensible starting value of 1000 m/s (Unreal is in cm)
+	float LaunchSpeed = 4500;  //sensible starting value of 1000 m/s (Unreal is in cm)
 
 	
 	

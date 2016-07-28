@@ -12,7 +12,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = false; 
+	PrimaryComponentTick.bCanEverTick = true; 
 
 	// ...
 }
@@ -50,19 +50,17 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 	auto Time = GetWorld()->GetTimeSeconds();
 
-	if(haveAimingSolution)
+	if (haveAimingSolution)
 	{ //Calculate the OutLaunchVelocity
 		//This will give the Normal of the vector for the launch projectile
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		//UE_LOG(LogTemp, Warning, TEXT("Aiming at %s"), *AimDirection.ToString());
 		MoveBarrelTowards(AimDirection);
-		UE_LOG(LogTemp, Warning, TEXT("%f: Aiming Solution"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("%f: Aiming Solution"), Time);
 	}
 	//If no Solution Found - Do Nothing
-	else {		
-		UE_LOG(LogTemp, Warning, TEXT("%f: No Aiming Solution"), Time);
-	}
 }
+	
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 
@@ -74,19 +72,13 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 	//Moce the barrel the right amount this frame
 	//Given a max elevation speed and the frame time
 	Barrel->Elevate(DeltaRotator.Pitch);
-	Turret->Rotate(DeltaRotator.Yaw);
-
-}
-
-void UTankAimingComponent::MoveTurretTowards(FVector AimDirection) {
-
-	//Work-out the difference between the barrel totation and aimdirection
-	//auto BarrelRotator = Barrel->GetForwardVector().Rotation();
-	//auto AimAsRotator = AimDirection.Rotation();
-	//auto DeltaRotator = AimAsRotator - BarrelRotator;
-	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator %s"), *DeltaRotator.ToString());
-	//Moce the barrel the right amount this frame
-	//Given a max elevation speed and the frame time
-	//Barrel->Elevate(DeltaRotator.Pitch);
+	if (FMath::Abs(DeltaRotator.Yaw) < 180)
+	{
+		Turret->Rotate(DeltaRotator.Yaw);
+	}
+	else // Avoid going the long-way round
+	{
+		Turret->Rotate(-DeltaRotator.Yaw);
+	}
 
 }
