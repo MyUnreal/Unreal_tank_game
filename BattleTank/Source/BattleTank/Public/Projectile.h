@@ -20,6 +20,12 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	void LaunchProjectile(float Speed);
+
+
+private:
+	//We could use the Projectile Blueprint, but we will use that in here
+	UProjectileMovementComponent* ProjectileMovement = nullptr;
 	
 	
 };
