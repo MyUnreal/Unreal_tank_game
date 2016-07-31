@@ -41,16 +41,17 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	//This property will be visible in Unreal
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 4500;  //sensible starting value of 1000 m/s (Unreal is in cm)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 4000;  //sensible starting value of 1000 m/s (Unreal is in cm)
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	//UClass* ProjectileBlueprint; //Alternative http://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/TSubclassOf/ - Using the alternative
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	//Local barrel reference to spawn projectile
 	UTankBarrel* Barrel = nullptr;
 
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
 	
