@@ -5,7 +5,7 @@
 
 void UTankTrack::SetThrottle(float Throttle) {
 	auto Name = GetName(); // Left or Right Track depending of the input used
-	UE_LOG(LogTemp, Warning, TEXT("%s: %f"), *Name, Throttle)
+	//UE_LOG(LogTemp, Warning, TEXT("%s: %f"), *Name, Throttle)
 
 	//Clamp thottle value for the use not over drive the tank
 	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;  //GetForwardVector gives the direction of the track, Pivot axis...
