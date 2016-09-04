@@ -16,7 +16,7 @@ ATank::ATank()
 
 	//No need to porctect the pointer at construction
 	TankAimingComponent = CreateAbstractDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-	TankMovementComponent = CreateAbstractDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
+	//TankMovementComponent = CreateAbstractDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 
 }
 
