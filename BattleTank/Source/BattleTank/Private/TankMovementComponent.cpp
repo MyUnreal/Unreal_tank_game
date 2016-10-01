@@ -53,9 +53,12 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	auto AIForwardIntention = MoveVelocity.GetSafeNormal(); //the safe method don't change the vector MoveVelocity
 	//UE_LOG(LogTemp, Warning, TEXT("Tank: %s vectoring to %s"), *TankName, *MoveVelocityString);
 	
+	//World Coordinates
 	auto FowardThrow = FVector::DotProduct(TankForwardDirection, AIForwardIntention);
 	IntendMoveForward(FowardThrow);
-
+	
+	auto RightThrow = FVector::CrossProduct(TankForwardDirection, AIForwardIntention).Z;
+	IntendMoveRight(RightThrow);
 }
 
 
