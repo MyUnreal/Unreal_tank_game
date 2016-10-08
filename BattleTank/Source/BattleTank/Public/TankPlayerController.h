@@ -17,6 +17,10 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+protected:
+	    UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
+
 private:
 	UPROPERTY(EditDefaultsOnly)
 	float CrossHairLocationX = 0.5f; //We defined that the small dot is 50% middle screen
@@ -26,8 +30,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000; //MAx distance to Hit - 10km (Is in cm so is 10 000 00) The last 2 00 is form cm
 
-
-	ATank* GetControlledTank() const;
+    
 	virtual void BeginPlay() override;
 	virtual void Tick( float DeltaTime );
 

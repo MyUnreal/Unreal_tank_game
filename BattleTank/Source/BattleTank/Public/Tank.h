@@ -30,6 +30,8 @@ public:
 	void Fire();
 
 protected:
+	//To Be callable in blueprints in this case in the TankPlayerController_BP
+	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UPROPERTY(BlueprintReadOnly)
 	UTankMovementComponent* TankMovementComponent = nullptr;
