@@ -5,6 +5,14 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+//Enum for aiming state (What the aiming type)
+UENUM()
+enum class EFiringState : uint8 {
+	Locked,
+	Aiming,
+	Reloading
+};
+
 //Forward Declaration
 class UTankBarrel; 
 class UTankTurret;
@@ -26,6 +34,10 @@ public:
 	//The Starting Point of our projectiles are in Barrel. 
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+protected:
+	//To enable the calling in blueprint -> must be protected
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	EFiringState FiringState = EFiringState::Reloading;
 
 private:
 	//The Barrel inherits form UObject in Unreal - And it's where the projectiles start
