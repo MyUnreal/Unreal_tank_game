@@ -8,9 +8,9 @@
 //Enum for aiming state (What the aiming type)
 UENUM()
 enum class EFiringState : uint8 {
-	Locked,
+	Reloading,
 	Aiming,
-	Reloading
+	Locked
 };
 
 //Forward Declaration
@@ -37,7 +37,7 @@ public:
 protected:
 	//To enable the calling in blueprint -> must be protected
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Reloading;
+	EFiringState FiringState = EFiringState::Locked;
 
 private:
 	//The Barrel inherits form UObject in Unreal - And it's where the projectiles start
