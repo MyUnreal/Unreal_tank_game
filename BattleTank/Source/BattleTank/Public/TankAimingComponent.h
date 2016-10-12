@@ -23,16 +23,10 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UTankAimingComponent();
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Initialise(UTankBarrel *BarrelToSet, UTankTurret *TurretToSet);
 	void AimAt(FVector HitLocation, float LaunchSpeed);
-
-	//The Starting Point of our projectiles are in Barrel. 
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-
-	//The Starting Point of our projectiles are in Barrel. 
-	void SetTurretReference(UTankTurret* TurretToSet);
 
 protected:
 	//To enable the calling in blueprint -> must be protected
@@ -40,6 +34,10 @@ protected:
 	EFiringState FiringState = EFiringState::Locked;
 
 private:
+
+	// Sets default values for this component's properties
+	UTankAimingComponent();
+
 	//The Barrel inherits form UObject in Unreal - And it's where the projectiles start
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
