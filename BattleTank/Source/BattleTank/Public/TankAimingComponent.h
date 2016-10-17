@@ -31,7 +31,7 @@ public:
 protected:
 	//To enable the calling in blueprint -> must be protected
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Locked;
+	EFiringState FiringState = EFiringState::Aiming;
 
 private:
 

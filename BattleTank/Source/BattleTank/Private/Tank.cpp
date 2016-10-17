@@ -14,6 +14,16 @@ ATank::ATank()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	/*auto TankName = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("Tank FACR C++ Construct: %s"), *TankName)*/
+
+}
+
+void ATank::BeginPlay() {
+	//Super?
+	Super::BeginPlay(); //Nedded to BP Begin Play to Run
+	auto TankName = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("Tank FACR C++ Begin Play: %s"), *TankName)
 }
 
 void ATank::AimAt(FVector HitLocation)

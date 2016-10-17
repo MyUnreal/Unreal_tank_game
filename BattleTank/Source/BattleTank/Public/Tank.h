@@ -35,6 +35,8 @@ private:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	virtual void BeginPlay() override;
+
 	//This property will be visible in Unreal
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000;  //sensible starting value of 1000 m/s (Unreal is in cm)
