@@ -8,9 +8,10 @@
 
 //Forward declarations
 class ATank;
+class UTankAimingComponent;
 
 /**
- * 
+ * Palyer aim
  */
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
@@ -20,6 +21,11 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 protected:
 	    UFUNCTION(BlueprintCallable, Category = "Setup")
 		ATank* GetControlledTank() const;
+
+		//Because I'm passing as an event to blueprint - no need to code cpp only call the function
+		UFUNCTION(BluePrintImplementableEvent, Category = "Setup")
+		void FoundAimingComponent(UTankAimingComponent* AimCompRef);
+
 
 private:
 	UPROPERTY(EditDefaultsOnly)
