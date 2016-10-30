@@ -14,7 +14,7 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	auto ControlledTank = Cast<ATank>(GetPawn());
-	if (PlayerTank) {
+	if (ensure(PlayerTank)) {
 		//Move towards the player - The Next Methos is responsible to call automaticaaly the RequestDirectMove in the TankMovementController
 		MoveToActor(PlayerTank, AcceptRadius); //todo check if radius is centimeters
 		//Aim at the player

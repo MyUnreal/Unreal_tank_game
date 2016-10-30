@@ -15,7 +15,7 @@ void ATankPlayerController::BeginPlay() {
 		//UE_LOG(LogTemp, Warning, TEXT("Player Controller - %s"), *(ControlledTank->GetName()));
 	}*/
 	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
-	if (AimingComponent) {
+	if (ensure(AimingComponent)) {
 		FoundAimingComponent(AimingComponent);
 	}
 	else {
@@ -50,7 +50,7 @@ ATank* ATankPlayerController::GetControlledTank() const {
 
 void ATankPlayerController::AimTowardsCrosshair() {
 	//I've got no tank in controll
-	if (!GetControlledTank()) { return; }
+	if (!ensure(GetControlledTank())) { return; }
 
 	//Get World location through Crosshair
 	FVector HitLocation; //Out parameter -> It will be modified (We need to get the HitLocation...)
